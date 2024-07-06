@@ -2,7 +2,7 @@
   "name": "dnd-backend",
   "version": "1.0.0",
   "description": "this project is for backend for drag and drop",
-  "main": "dist/index.mjs",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
     "start": "nodemon",
