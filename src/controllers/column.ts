@@ -130,9 +130,9 @@ export async function removeNullis() {
   for (const key in columnObj) {
     const column = columnObj[key as Ids];
     const columnKey = key as Ids
-    column.taskIds.forEach((val, ind) => {
+    column.taskIds.forEach(async (val, ind) => {
       if (!taskIdsSet.has(val?.toString())) {
-        removeNull(columnKey, ind);
+        await removeNull(columnKey, ind);
       }
     })
   }
