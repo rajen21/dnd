@@ -1,4 +1,4 @@
-import express, { Application, Request, Response } from 'express';
+import express, { Application } from 'express';
 import http from 'http';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -38,28 +38,28 @@ connectDB(`${process.env.DB_URL}`)
       console.log('New client connected');
 
       socket.on("addNewTask", async (task, key) => {
-        const id : string = await addTask(task);
+        const id: string = await addTask(task);
         await addTaskIntoColumn(id, key);
         const obj = await makeObj();
         io.emit("tasksUpdated", obj);
       });
 
       socket.on("updateTask", async (task) => {
-        updateTask(task);
-        await makeObj();
-        // io.emit("tasksUpdated", obj);
+        await updateTask(task);
+        const obj = await makeObj();
+        io.emit("tasksUpdated", obj);
       });
 
       socket.on("updateTasks", async (sKey, sInd, tKey, tId, tInd) => {
-        await updateTaskOfColumns(sKey, sInd,tKey,tId, parseInt(tInd));
-        await makeObj();
-        // io.emit("tasksUpdated", obj);
-      }) 
+        await updateTaskOfColumns(sKey, sInd, tKey, tId, parseInt(tInd));
+        const obj = await makeObj();
+        io.emit("tasksUpdated", obj);
+      })
 
       socket.on("deleteTask", async (id, key, taskIdInd) => {
         await deleteTask(id, key, taskIdInd);
-        await makeObj();
-        // io.emit("tasksUpdated", obj);
+        const obj = await makeObj();
+        io.emit("tasksUpdated", obj);
       })
 
       socket.on('updatedTasks', async () => {
