@@ -82,4 +82,8 @@ connectDB(`${process.env.DB_URL}`)
     console.error('MongoDb connection failed!!', err);
   });
 
+app.use("/",(req, res) => {
+  res.send("Welcome to React DND!!!!")
+})
+
 export default app;

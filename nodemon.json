@@ -2,5 +2,5 @@
   "watch": ["src"],
   "ext": "ts",
   "ignore": ["src/**/*.test.ts"],
-  "exec": "node dist/index.js --experimental-specifier-resolution=node"
+  "exec": "node dist/app.js --experimental-specifier-resolution=node"
 }
