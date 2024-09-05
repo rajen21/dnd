@@ -1,4 +1,4 @@
-import express, { Application } from 'express';
+import express, { Application, Request, Response } from 'express';
 import http from 'http';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -82,7 +82,7 @@ connectDB(`${process.env.DB_URL}`)
     console.error('MongoDb connection failed!!', err);
   });
 
-app.use("/",(req, res) => {
+app.use("/",(req:Request, res: Response) => {
   res.send("Welcome to React DND!!!!")
 })
 
